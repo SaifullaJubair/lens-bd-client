@@ -127,12 +127,7 @@ function NavListMenu() {
         allowHover={true}
       >
         <MenuHandler>
-          <Typography
-            placeholder={""}
-            as="div"
-            variant="small"
-            className="font-medium"
-          >
+          <Typography placeholder={""} as="div" className="font-medium">
             <ListItem
               placeholder={""}
               className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900"
@@ -181,7 +176,6 @@ function NavList() {
         <Typography
           placeholder={""}
           as="a"
-          variant="small"
           color="blue-gray"
           className="font-medium"
         >
@@ -198,7 +192,6 @@ function NavList() {
         <Typography
           placeholder={""}
           as="a"
-          variant="small"
           color="blue-gray"
           className="font-medium"
         >
@@ -214,7 +207,6 @@ function NavList() {
         <Typography
           placeholder={""}
           as="a"
-          variant="small"
           color="blue-gray"
           className="font-medium"
         >
@@ -241,7 +233,10 @@ export function MainNavbar() {
   }, []);
 
   return (
-    <Navbar placeholder={""} className="mx-auto max-w-screen-2xl  px-4 py-2">
+    <Navbar
+      placeholder={""}
+      className="mx-auto max-w-[1440px] shadow rounded-none  px-6 py-3"
+    >
       <div className="flex items-center  justify-between text-blue-gray-900">
         <Link to="/">
           <Typography
