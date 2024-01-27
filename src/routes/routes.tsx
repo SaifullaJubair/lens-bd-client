@@ -2,9 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Products from "../pages/Products";
+import Lens from "../pages/Lens";
 import NotFound from "../pages/NotFound";
 import App from "../App";
+import ContactUs from "../pages/ContactUs";
 
 const routes = createBrowserRouter([
   {
@@ -26,7 +27,15 @@ const routes = createBrowserRouter([
       },
       {
         path: "/products",
-        element: <Products />,
+        element: <Lens />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
+      },
+      {
+        path: "/all-lens",
+        element: <Lens />,
       },
     ],
   },
