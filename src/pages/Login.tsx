@@ -1,5 +1,5 @@
 const Login = () => {
-  return <div>Login</div>;
+  return <div className="max-w-[1440px] mx-auto">Login</div>;
 };
 
 export default Login;

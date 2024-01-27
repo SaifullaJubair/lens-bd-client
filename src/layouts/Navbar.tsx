@@ -235,7 +235,7 @@ export function MainNavbar() {
   return (
     <Navbar
       placeholder={""}
-      className="mx-auto max-w-[1440px] shadow rounded-none  px-6 py-3"
+      className="mx-auto max-w-[1440px] shadow  sticky top-0 z-10  rounded-none  px-6 py-3"
     >
       <div className="flex items-center  justify-between text-blue-gray-900">
         <Link to="/">
