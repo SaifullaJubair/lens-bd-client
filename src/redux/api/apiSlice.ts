@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const api = createApi({
+export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000",
@@ -15,24 +15,36 @@ const api = createApi({
     }),
 
     // register user
-    registerUser: builder.mutation({
-      query: (data) => ({
+    saveUser: builder.mutation({
+      query: (user) => ({
         url: "/signup",
         method: "POST",
-        body: data,
+        body: user,
       }),
     }),
 
     // login user
-    loginUser: builder.mutation({
+    getUser: builder.mutation({
       query: (data) => ({
         url: "/login",
         method: "POST",
         body: data,
       }),
     }),
+
+    // Get lenses
+    getLenses: builder.query({
+      query: () => ({
+        url: "/lenses",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useRegisterUserMutation, useGetAllUsersQuery } = api;
-export default api;
+export const {
+  useGetAllUsersQuery,
+  useSaveUserMutation,
+  useGetUserMutation,
+  useGetLensesQuery,
+} = api;

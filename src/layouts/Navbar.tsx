@@ -29,6 +29,8 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { logOut } from "../redux/features/user/userSlice";
 
 const navListMenuItems = [
   {
@@ -223,6 +225,12 @@ function NavList() {
 }
 
 export function MainNavbar() {
+  const { user } = useAppSelector((state) => state.user);
+  console.log(user);
+  const dispatch = useAppDispatch();
+  const handleLogOut = () => {
+    dispatch(logOut());
+  };
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -232,6 +240,7 @@ export function MainNavbar() {
     );
   }, []);
 
+  console.log(user);
   return (
     <Navbar
       placeholder={""}
@@ -252,16 +261,51 @@ export function MainNavbar() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Link to="/login">
-            <Button placeholder={""} variant="text" size="sm" color="blue-gray">
-              Log In
-            </Button>
-          </Link>
-          <Link to="/register">
-            <Button placeholder={""} variant="gradient" size="sm">
-              Sign In
-            </Button>
-          </Link>
+          {user?.email ? (
+            <>
+              <Link to="/add-lens">
+                <Typography
+                  placeholder={""}
+                  as="a"
+                  color="blue-gray"
+                  className="font-medium"
+                >
+                  <ListItem
+                    placeholder={""}
+                    className="flex items-center gap-2 py-2 pr-4"
+                  >
+                    Add Lens
+                  </ListItem>
+                </Typography>
+              </Link>
+              <Button
+                placeholder={""}
+                variant="gradient"
+                size="sm"
+                onClick={() => handleLogOut()}
+              >
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button
+                  placeholder={""}
+                  variant="text"
+                  size="sm"
+                  color="blue-gray"
+                >
+                  Log In
+                </Button>
+              </Link>
+              <Link to="/register">
+                <Button placeholder={""} variant="gradient" size="sm">
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
         <IconButton
           placeholder={""}
@@ -293,7 +337,7 @@ export function MainNavbar() {
           </Link>
           <Link to="register">
             <Button placeholder={""} variant="gradient" size="sm" fullWidth>
-              Sign In
+              Sign Up
             </Button>
           </Link>
         </div>
