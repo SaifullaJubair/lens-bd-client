@@ -50,6 +50,7 @@ const Resister = () => {
     }
     if (name.length > 0 && password.length > 5) {
       dispatch(createUser({ email, password }));
+      toast.success("User created successfully");
       saveUser(user);
     }
   };
