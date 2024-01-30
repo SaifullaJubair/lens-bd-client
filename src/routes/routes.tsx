@@ -6,6 +6,7 @@ import Lens from "../pages/Lens";
 import NotFound from "../pages/NotFound";
 import App from "../App";
 import ContactUs from "../pages/ContactUs";
+import LensDetails from "../pages/LensDetails";
 
 const routes = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const routes = createBrowserRouter([
       {
         path: "/all-lens",
         element: <Lens />,
+      },
+      {
+        path: "/lens/details/:id",
+        element: <LensDetails />,
       },
     ],
   },

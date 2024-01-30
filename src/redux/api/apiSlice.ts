@@ -39,6 +39,12 @@ export const api = createApi({
         method: "GET",
       }),
     }),
+    getSingleLens: builder.query({
+      query: (id) => ({
+        url: `/lenses/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -47,4 +53,5 @@ export const {
   useSaveUserMutation,
   useGetUserMutation,
   useGetLensesQuery,
+  useGetSingleLensQuery,
 } = api;

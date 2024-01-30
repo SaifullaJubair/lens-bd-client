@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./CategorySidebar.css";
+import { useState } from "react";
 
 const ProductsCategorySideBar = () => {
   const [hide, setHide] = useState(true);
