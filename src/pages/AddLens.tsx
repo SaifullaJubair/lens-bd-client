@@ -274,7 +274,7 @@ const AddLens = () => {
                     />
                   </div>
 
-                  <div className="md:col-span-5">
+                  <div className="md:col-span-4">
                     <label>Description</label>
                     <div className=" border-gray-400 rounded items-center mt-1">
                       <textarea
@@ -286,11 +286,11 @@ const AddLens = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-end items-end mt-3">
+                <div className="mt-3">
                   <button
                     type="submit"
                     className="text-gray-200 rounded px-5 py-1 text-lg 
-                    bg-red-400"
+                    bg-blue-400"
                   >
                     Submit
                   </button>

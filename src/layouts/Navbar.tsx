@@ -263,6 +263,20 @@ export function MainNavbar() {
         <div className="hidden gap-2 lg:flex">
           {user?.email ? (
             <>
+              <Link to="/inventory">
+                <Typography
+                  placeholder={""}
+                  color="blue-gray"
+                  className="font-medium"
+                >
+                  <ListItem
+                    placeholder={""}
+                    className="flex items-center gap-2 py-2 pr-4"
+                  >
+                    Inventory
+                  </ListItem>
+                </Typography>
+              </Link>
               <Link to="/add-lens">
                 <Typography
                   placeholder={""}

@@ -8,6 +8,8 @@ import App from "../App";
 import ContactUs from "../pages/ContactUs";
 import LensDetails from "../pages/LensDetails";
 import AddLens from "../pages/AddLens";
+import PrivateRoute from "./PrivateRoute";
+import Inventory from "../pages/Inventory";
 
 const routes = createBrowserRouter([
   {
@@ -41,7 +43,19 @@ const routes = createBrowserRouter([
       },
       {
         path: "/add-lens",
-        element: <AddLens />,
+        element: (
+          <PrivateRoute>
+            <AddLens />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/inventory",
+        element: (
+          <PrivateRoute>
+            <Inventory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/lens/details/:id",
