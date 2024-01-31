@@ -39,15 +39,6 @@ const Lens = () => {
     setSelectedGender(value);
   };
 
-  useEffect(() => {
-    console.log("Search:", searchValue);
-    // console.log("Price Range:", priceRange);
-    console.log("Category:", selectedCategory);
-    console.log("Brand:", selectedBrand);
-    console.log("Gender:", selectedGender);
-    // Log values whenever they change
-  }, [searchValue, selectedCategory, selectedBrand, selectedGender]);
-
   let lensesData;
   if (searchValue) {
     lensesData = lenses?.filter((lens: ILens) => {

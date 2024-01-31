@@ -89,4 +89,6 @@ export const {
   useGetLensesQuery,
   useGetSingleLensQuery,
   useAddLensMutation,
+  useUpdateLensMutation,
+  useDeleteLensMutation,
 } = api;

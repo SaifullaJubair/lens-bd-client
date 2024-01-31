@@ -10,6 +10,7 @@ import LensDetails from "../pages/LensDetails";
 import AddLens from "../pages/AddLens";
 import PrivateRoute from "./PrivateRoute";
 import Inventory from "../pages/Inventory";
+import UpdateLens from "../pages/UpdateLens";
 
 const routes = createBrowserRouter([
   {
@@ -60,6 +61,14 @@ const routes = createBrowserRouter([
       {
         path: "/lens/details/:id",
         element: <LensDetails />,
+      },
+      {
+        path: "/lens/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateLens />
+          </PrivateRoute>
+        ),
       },
     ],
   },
