@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
   reducerPath: "api",
+  tagTypes: ["Users", "Lenses"],
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000",
   }),
@@ -38,12 +39,23 @@ export const api = createApi({
         url: "/lenses",
         method: "GET",
       }),
+      providesTags: ["Lenses"],
     }),
     getSingleLens: builder.query({
       query: (id) => ({
         url: `/lenses/${id}`,
         method: "GET",
       }),
+    }),
+
+    // add lens
+    addLens: builder.mutation({
+      query: (data) => ({
+        url: "/add-lens",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Lenses"],
     }),
   }),
 });
@@ -54,4 +66,5 @@ export const {
   useGetUserMutation,
   useGetLensesQuery,
   useGetSingleLensQuery,
+  useAddLensMutation,
 } = api;

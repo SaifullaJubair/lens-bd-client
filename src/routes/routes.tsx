@@ -7,6 +7,7 @@ import NotFound from "../pages/NotFound";
 import App from "../App";
 import ContactUs from "../pages/ContactUs";
 import LensDetails from "../pages/LensDetails";
+import AddLens from "../pages/AddLens";
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
       {
         path: "/all-lens",
         element: <Lens />,
+      },
+      {
+        path: "/add-lens",
+        element: <AddLens />,
       },
       {
         path: "/lens/details/:id",

@@ -4,20 +4,11 @@ import Loader from "../utils/Loader";
 
 const LensDetails = () => {
   const { id } = useParams();
-  const { isLoading, data: lens } = useGetSingleLensQuery(id);
-  const {
-    brand,
-    category,
-    img,
-    name,
-    price,
-    color,
-    frameMaterial,
-    frameShape,
-    gender,
-    lensType,
-    releaseDate,
-  } = lens;
+  const { isLoading, data: lens } = useGetSingleLensQuery(id, {
+    pollingInterval: 60000,
+    refetchOnMountOrArgChange: true,
+  });
+
   if (isLoading) {
     return <Loader />;
   }
@@ -25,22 +16,26 @@ const LensDetails = () => {
     <div className="max-w-[1440px] mx-auto">
       <div className="flex items-center justify-between">
         <div className="w-1/2">
-          <img src={img} alt="lens img" className="w-full" />
+          <img src={lens.img} alt="lens img" className="w-full" />
         </div>
         <div className="w-1/2  ml-16">
-          <h1 className="text-3xl my-6 text-gray-700 font-semibold ">{name}</h1>
-          <p> Category: {category}</p>
-          <p className="my-2">Brand: {brand}</p>
-          <p className="my-2">Color: {color}</p>
-          <p className="my-2">Frame Material: {frameMaterial}</p>
-          <p className="my-2">Frame Shape: {frameShape}</p>
-          <p className="my-2">Lens Type: {lensType}</p>
-          <p className="my-2">Gender: {gender}</p>
-          <p className="my-2">Release Date: {releaseDate}</p>
+          <h1 className="text-3xl my-6 text-gray-700 font-semibold ">
+            {lens.name}
+          </h1>
+          <p> Category: {lens.category}</p>
+          <p className="my-2">Brand: {lens.brand}</p>
+          <p className="my-2">Color: {lens.color}</p>
+          <p className="my-2">Frame Material: {lens.frameMaterial}</p>
+          <p className="my-2">Frame Shape: {lens.frameShape}</p>
+          <p className="my-2">Frame Type: {lens?.frameType}</p>
+          <p className="my-2">Lens Type: {lens.lensType}</p>
+          <p className="my-2">Gender: {lens.gender}</p>
+          <p className="my-2">Release Date: {lens.releaseDate}</p>
           <p className="text-semibold text-gray-700 text-2xl">
             {" "}
-            Price: {price} taka
+            Price: {lens.price} taka
           </p>
+          <p className="my-2">Description: {lens.description}</p>
         </div>
       </div>
       <hr />
