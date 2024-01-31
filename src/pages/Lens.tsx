@@ -47,26 +47,27 @@ const Lens = () => {
     console.log("Gender:", selectedGender);
     // Log values whenever they change
   }, [searchValue, selectedCategory, selectedBrand, selectedGender]);
-  // const handleSearch = () => {
-  //   // console.log("Search Value:", searchValue);
-  //   // console.log("Category:", selectedCategory);
-  //   // console.log("Brand:", selectedBrand);
-  //   // console.log("Gender:", selectedGender);
-  //   // Log the values to the console
-  //   // Add logic for further processing or filtering based on these values
-  // };
 
   let lensesData;
   if (searchValue) {
-    // lensesData = lenses?.filter((lens: ILens) =>
-    //   lens.name.toLowerCase().includes(searchValue.toLowerCase())
-    // );
-
     lensesData = lenses?.filter((lens: ILens) => {
       return (
         lens.name.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
         lens.brand.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
         lens.category.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+        lens?.color.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+        lens?.frameShape
+          ?.toLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
+        lens?.frameType
+          ?.toLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
+        lens?.lensType
+          ?.toLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
+        lens?.frameMaterial
+          ?.toLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
         lens.gender.toLowerCase().includes(searchValue.toLocaleLowerCase())
       );
     });
@@ -89,14 +90,18 @@ const Lens = () => {
   return (
     <div className="max-w-[1440px] mx-auto">
       <div className="mx-4 w-11/12">
-        <div className=" my-4  grid grid-cols-3 gap-4">
+        <div className=" my-4 max-w-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* search */}
-          <div className="col-span-2">
+          <div className="lg:col-span-3 md:col-span-2 col-span-1">
+            <label className="text-semibold text-gray-700 text-sm">
+              Search by: name / brand / category / color / frame shape / frame
+              type / lens type / frame material / gender
+            </label>
             <input
               type="text"
               name="search"
               className="h-10 border mt-1 rounded px-4 w-full border-gray-400 focus:outline-none focus:border focus:border-gray-700"
-              placeholder="search by name or brand or category or gender"
+              placeholder="search here"
               value={searchValue}
               onChange={handleSearchInputChange}
               required
@@ -116,7 +121,7 @@ const Lens = () => {
 
           </div> */}
           {/* category */}
-          <div className="mt-1">
+          <div className="">
             <Select
               placeholder={""}
               color="blue"
@@ -166,10 +171,10 @@ const Lens = () => {
             </Select>
           </div>
         </div>
-        <p className="text-2xl font-semibold my-6 text-gray-400">
+        <p className="text-2xl font-semibold my-6 text-gray-700">
           Lenses available {lensesData.length}
         </p>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {lensesData.map((lens: ILens) => (
             <LensCard key={lens._id} lens={lens}></LensCard>
           ))}

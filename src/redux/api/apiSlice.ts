@@ -33,6 +33,8 @@ export const api = createApi({
       }),
     }),
 
+    // Lenses
+
     // Get lenses
     getLenses: builder.query({
       query: () => ({
@@ -54,6 +56,26 @@ export const api = createApi({
         url: "/add-lens",
         method: "POST",
         body: data,
+      }),
+      invalidatesTags: ["Lenses"],
+    }),
+
+    // update lens
+    updateLens: builder.mutation({
+      query: ({ data, id }) => ({
+        url: `/update-lens/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["Lenses"],
+    }),
+
+    // delete lens
+
+    deleteLens: builder.mutation({
+      query: (id) => ({
+        url: `/delete-lens/${id}`,
+        method: "DELETE",
       }),
       invalidatesTags: ["Lenses"],
     }),
