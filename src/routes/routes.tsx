@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import Inventory from "../pages/Inventory";
 import UpdateLens from "../pages/UpdateLens";
 import DuplicateLens from "../pages/DuplicateLnes";
+import SellsHistory from "../pages/SellsHistory";
 
 const routes = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const routes = createBrowserRouter([
       {
         path: "/all-lens",
         element: <Lens />,
+      },
+      {
+        path: "/sells",
+        element: (
+          <PrivateRoute>
+            <SellsHistory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/add-lens",

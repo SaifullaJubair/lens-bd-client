@@ -15,7 +15,11 @@ const DuplicateLens = () => {
   const [addLens, { isSuccess }] = useAddLensMutation();
 
   const currentDate = new Date();
-  const formattedDate = new Intl.DateTimeFormat("en-US").format(currentDate);
+  const formattedDate = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(currentDate);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();

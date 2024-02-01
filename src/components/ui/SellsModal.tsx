@@ -18,7 +18,11 @@ export function SellsModal({ handleOpen, id }: any) {
   const { data: lens } = useGetSingleLensQuery(id);
   const [addSell, { isLoading, isSuccess }] = useAddSellMutation();
   const currentDate = new Date();
-  const formattedDate = new Intl.DateTimeFormat("en-US").format(currentDate);
+  const formattedDate = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(currentDate);
 
   const handleSell = (event: any) => {
     event.preventDefault();
