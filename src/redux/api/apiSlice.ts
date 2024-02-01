@@ -95,7 +95,16 @@ export const api = createApi({
         url: "/sells",
         method: "GET",
       }),
-      providesTags: ["Lenses"],
+    }),
+
+    // add sell
+    addSell: builder.mutation({
+      query: (data) => ({
+        url: "/sells",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Lenses"],
     }),
   }),
 });
@@ -111,4 +120,5 @@ export const {
   useDeleteLensMutation,
   useSelectDeleteLensMutation,
   useGetSellsQuery,
+  useAddSellMutation,
 } = api;

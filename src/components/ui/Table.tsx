@@ -124,13 +124,13 @@ const Table = ({
           </div>
         </td>
 
-        <td className="p-4 border-b border-blue-gray-50">
+        {/* <td className="p-4 border-b border-blue-gray-50">
           <div className="w-max">
             <div className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
               <span className="">online</span>
             </div>
           </div>
-        </td>
+        </td> */}
         <td className="p-4 border-b border-blue-gray-50">
           <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
             {releaseDate}
@@ -214,7 +214,7 @@ const Table = ({
           />
         </td>
       </tr>
-      {open && <SellsModal handleOpen={handleOpen} />}
+      {open && <SellsModal handleOpen={handleOpen} id={_id} />}
     </tbody>
   );
 };

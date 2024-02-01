@@ -146,11 +146,11 @@ const Inventory = () => {
                     Gender
                   </td>
                 </th>
-                <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                {/* <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                   <td className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                     Status
                   </td>
-                </th>
+                </th> */}
                 <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                   <td className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                     Release Date
