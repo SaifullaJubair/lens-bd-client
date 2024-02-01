@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { loginUser } from "../redux/features/user/userSlice";
+import Loader from "../utils/Loader";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -31,6 +32,14 @@ const Login = () => {
       toast.error(error);
     }
   }, [error]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className=" flex flex-col justify-center py-14">

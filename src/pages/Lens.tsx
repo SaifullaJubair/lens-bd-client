@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Option, Select } from "@material-tailwind/react";
+import { Button, Option, Select } from "@material-tailwind/react";
 import { LensCard } from "../components/ui/Lens/LensCard";
 import { ILens } from "../interface/ILens";
 import { useGetLensesQuery } from "../redux/api/apiSlice";
@@ -161,6 +161,22 @@ const Lens = () => {
               <Option value=" Everyone">Everyone</Option>
             </Select>
           </div>
+          <p>
+            <Button
+              variant="gradient"
+              color="red"
+              placeholder={""}
+              type="reset"
+              onClick={() => {
+                setSearchValue("");
+                setSelectedCategory("");
+                setSelectedBrand("");
+                setSelectedGender("");
+              }}
+            >
+              Reset
+            </Button>{" "}
+          </p>
         </div>
         <p className="text-2xl font-semibold my-6 text-gray-700">
           Lenses available {lensesData.length}

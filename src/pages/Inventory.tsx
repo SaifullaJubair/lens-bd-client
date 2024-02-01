@@ -59,6 +59,7 @@ const Inventory = () => {
 
   const handleSelectDelete = () => {
     selectDeleteLens(ids);
+    setIds([]);
   };
   if (isLoading) {
     return <Loader />;
