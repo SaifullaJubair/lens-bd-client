@@ -5,7 +5,10 @@ import { useGetLensesQuery } from "../redux/api/apiSlice";
 import Loader from "../utils/Loader";
 
 const Inventory = () => {
-  const { isLoading, data } = useGetLensesQuery(undefined);
+  const { isLoading, data } = useGetLensesQuery(undefined, {
+    pollingInterval: 30000,
+    refetchOnMountOrArgChange: true,
+  });
   const [searchValue, setSearchValue] = useState("");
 
   let lensesData;
