@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Option, Select } from "@material-tailwind/react";
 import { LensCard } from "../components/ui/Lens/LensCard";
 import { ILens } from "../interface/ILens";
 import { useGetLensesQuery } from "../redux/api/apiSlice";
 
 import Loader from "../utils/Loader";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const Lens = () => {
   const { data: lenses, isLoading } = useGetLensesQuery(undefined, {
     pollingInterval: 30000,
@@ -27,15 +28,15 @@ const Lens = () => {
     setSearchValue(e.target.value);
   };
 
-  const handleCategoryChange = (value) => {
+  const handleCategoryChange = (value: any) => {
     setSelectedCategory(value);
   };
 
-  const handleBrandChange = (value) => {
+  const handleBrandChange = (value: any) => {
     setSelectedBrand(value);
   };
 
-  const handleGenderChange = (value) => {
+  const handleGenderChange = (value: any) => {
     setSelectedGender(value);
   };
 

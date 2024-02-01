@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
 import { ILens } from "../interface/ILens";
 import toast from "react-hot-toast";

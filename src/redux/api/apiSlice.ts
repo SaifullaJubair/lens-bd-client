@@ -79,6 +79,15 @@ export const api = createApi({
       }),
       invalidatesTags: ["Lenses"],
     }),
+
+    selectDeleteLens: builder.mutation({
+      query: (ids) => ({
+        url: `/bulk-delete-lenses`,
+        method: "POST",
+        body: { ids },
+      }),
+      invalidatesTags: ["Lenses"],
+    }),
   }),
 });
 
@@ -91,4 +100,5 @@ export const {
   useAddLensMutation,
   useUpdateLensMutation,
   useDeleteLensMutation,
+  useSelectDeleteLensMutation,
 } = api;

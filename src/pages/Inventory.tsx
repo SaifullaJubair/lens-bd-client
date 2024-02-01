@@ -1,14 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import Table from "../components/ui/Table";
 import { ILens } from "../interface/ILens";
-import { useGetLensesQuery } from "../redux/api/apiSlice";
+
 import Loader from "../utils/Loader";
+import {
+  useGetLensesQuery,
+  useSelectDeleteLensMutation,
+} from "../redux/api/apiSlice";
 
 const Inventory = () => {
   const { isLoading, data } = useGetLensesQuery(undefined, {
     pollingInterval: 30000,
     refetchOnMountOrArgChange: true,
   });
+  const [selectDeleteLens] = useSelectDeleteLensMutation();
+
   const [searchValue, setSearchValue] = useState("");
 
   let lensesData;
@@ -38,7 +45,21 @@ const Inventory = () => {
     lensesData = data;
   }
 
-  console.log(data);
+  const [ids, setIds] = useState<string[]>([]);
+
+  const handleCheckboxChange = (_id: string): void => {
+    if (ids.includes(_id)) {
+      setIds(ids.filter((id) => id != _id));
+    } else {
+      setIds([...ids, _id]);
+    }
+  };
+  console.log(ids);
+  /* Building Dreams, Crafting Realities. */
+
+  const handleSelectDelete = () => {
+    selectDeleteLens(ids);
+  };
   if (isLoading) {
     return <Loader />;
   }
@@ -139,10 +160,33 @@ const Inventory = () => {
                     Action
                   </td>
                 </th>
+                <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                  <td className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                    Sell
+                  </td>
+                </th>
+                <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                  <td className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                    {ids.length > 0 ? (
+                      <p
+                        className="text-xs bg-red-600 text-white px-2 py-1 "
+                        onClick={handleSelectDelete}
+                      >
+                        Delete All
+                      </p>
+                    ) : (
+                      <>Select</>
+                    )}
+                  </td>
+                </th>
               </tr>
             </thead>
             {lensesData?.map((lens: ILens) => (
-              <Table key={lens._id} lens={lens} />
+              <Table
+                key={lens._id}
+                lens={lens}
+                handleCheckboxChange={handleCheckboxChange}
+              />
             ))}
           </table>
         </div>

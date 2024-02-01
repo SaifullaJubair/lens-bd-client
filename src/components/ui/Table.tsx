@@ -1,18 +1,27 @@
 import {
+  Button,
+  Checkbox,
   Menu,
   MenuHandler,
   MenuItem,
   MenuList,
 } from "@material-tailwind/react";
-import { FaDumbbell, FaLink, FaPencilAlt, FaTrash } from "react-icons/fa";
+import { FaLink, FaPencilAlt, FaTrash } from "react-icons/fa";
 import { ILens } from "../../interface/ILens";
 import { useDeleteLensMutation } from "../../redux/api/apiSlice";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BiDuplicate } from "react-icons/bi";
+import { SellsModal } from "./SellsModal";
 
-const Table = ({ lens }: { lens: ILens }) => {
+const Table = ({
+  lens,
+  handleCheckboxChange,
+}: {
+  lens: ILens;
+  handleCheckboxChange: (_id: string) => void;
+}) => {
   const {
     name,
     brand,
@@ -26,7 +35,7 @@ const Table = ({ lens }: { lens: ILens }) => {
     category,
     releaseDate,
     img,
-    _id,
+    _id = "",
   } = lens;
   const [deleteLens, { isSuccess, error }] = useDeleteLensMutation();
 
@@ -41,6 +50,10 @@ const Table = ({ lens }: { lens: ILens }) => {
       toast.error("Lens deletion failed");
     }
   });
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
+
   return (
     <tbody>
       <tr>
@@ -106,7 +119,7 @@ const Table = ({ lens }: { lens: ILens }) => {
         <td className="p-4 border-b border-blue-gray-50">
           <div className="flex flex-col">
             <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-              Gender: {gender}
+              {gender}
             </p>
           </div>
         </td>
@@ -120,7 +133,7 @@ const Table = ({ lens }: { lens: ILens }) => {
         </td>
         <td className="p-4 border-b border-blue-gray-50">
           <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-            Release Date: {releaseDate}
+            {releaseDate}
           </p>
         </td>
         <td className="p-4 border-b border-blue-gray-50">
@@ -179,7 +192,29 @@ const Table = ({ lens }: { lens: ILens }) => {
             </MenuList>
           </Menu>
         </td>
+
+        <td className="p-4 border-b border-blue-gray-50">
+          <Button
+            size="sm"
+            color="light-green"
+            placeholder={""}
+            onClick={handleOpen}
+          >
+            Sell
+          </Button>
+        </td>
+
+        <td className="p-4 border-b border-blue-gray-50">
+          <Checkbox
+            crossOrigin={""}
+            color="green"
+            onChange={() => {
+              handleCheckboxChange(_id);
+            }}
+          />
+        </td>
       </tr>
+      {open && <SellsModal handleOpen={handleOpen} />}
     </tbody>
   );
 };
