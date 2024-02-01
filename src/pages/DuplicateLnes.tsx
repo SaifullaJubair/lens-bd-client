@@ -2,22 +2,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ILens } from "../interface/ILens";
 import toast from "react-hot-toast";
 import {
+  useAddLensMutation,
   useGetSingleLensQuery,
-  useUpdateLensMutation,
 } from "../redux/api/apiSlice";
 import { useEffect } from "react";
 
-const UpdateLens = () => {
+const DuplicateLens = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data } = useGetSingleLensQuery(id);
-  const [updateLens, { isSuccess }] = useUpdateLensMutation();
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("Lens Update successfully...");
-      navigate("/inventory");
-    }
-  }, [isSuccess, navigate]);
+  const [addLens, { isSuccess }] = useAddLensMutation();
 
   const currentDate = new Date();
   const formattedDate = new Intl.DateTimeFormat("en-US").format(currentDate);
@@ -69,17 +63,18 @@ const UpdateLens = () => {
       toast.error("Please fill all the fields... 😔 Check selected filed");
       return;
     }
-    const updateData = {
-      id,
-      lens,
-    };
-    updateLens(updateData);
-    console.log(updateData);
+    addLens(lens);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Lens duplicate created successfully...");
+      navigate("/inventory");
+    }
+  }, [isSuccess, navigate]);
 
   return (
     <div className="max-w-3xl my-6 mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 my-6">Update Lens</h1>
+      <h1 className="text-3xl font-bold text-gray-800 my-6">Duplicate Lens</h1>
       <form className="lg:col-span-2" onSubmit={handleSubmit}>
         <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
           <div className="md:col-span-2">
@@ -319,4 +314,4 @@ const UpdateLens = () => {
   );
 };
 
-export default UpdateLens;
+export default DuplicateLens;

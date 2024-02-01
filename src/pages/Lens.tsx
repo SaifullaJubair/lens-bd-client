@@ -95,7 +95,6 @@ const Lens = () => {
               placeholder="search here"
               value={searchValue}
               onChange={handleSearchInputChange}
-              required
             />
           </div>
           {/* Price Range */}

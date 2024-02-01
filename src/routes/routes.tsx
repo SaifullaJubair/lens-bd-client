@@ -11,6 +11,7 @@ import AddLens from "../pages/AddLens";
 import PrivateRoute from "./PrivateRoute";
 import Inventory from "../pages/Inventory";
 import UpdateLens from "../pages/UpdateLens";
+import DuplicateLens from "../pages/DuplicateLnes";
 
 const routes = createBrowserRouter([
   {
@@ -67,6 +68,14 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UpdateLens />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/lens/duplicate/:id",
+        element: (
+          <PrivateRoute>
+            <DuplicateLens />
           </PrivateRoute>
         ),
       },

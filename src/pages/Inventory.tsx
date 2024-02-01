@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Table from "../components/ui/Table";
 import { ILens } from "../interface/ILens";
 import { useGetLensesQuery } from "../redux/api/apiSlice";
@@ -5,6 +6,35 @@ import Loader from "../utils/Loader";
 
 const Inventory = () => {
   const { isLoading, data } = useGetLensesQuery(undefined);
+  const [searchValue, setSearchValue] = useState("");
+
+  let lensesData;
+  if (searchValue) {
+    lensesData = data?.filter((lens: ILens) => {
+      return (
+        lens.name.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+        lens.brand.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+        lens.category.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+        lens?.color.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+        lens?.frameShape
+          ?.toLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
+        lens?.frameType
+          ?.toLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
+        lens?.lensType
+          ?.toLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
+        lens?.frameMaterial
+          ?.toLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
+        lens.gender.toLowerCase().includes(searchValue.toLocaleLowerCase())
+      );
+    });
+  } else {
+    lensesData = data;
+  }
+
   console.log(data);
   if (isLoading) {
     return <Loader />;
@@ -23,7 +53,10 @@ const Inventory = () => {
               </p>
             </div>
           </div>
-
+          <p className="max-w-sm text-xs my-1.5">
+            Search Lenses by name or brand or category or color or frame shape
+            or frame type or lens type or frame material or gender
+          </p>
           <div className="w-full md:w-72">
             <div className="relative h-10 w-full min-w-[200px]">
               <div className="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
@@ -46,6 +79,9 @@ const Inventory = () => {
               <input
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
+                name="search"
+                onChange={(e) => setSearchValue(e.target.value)}
+                value={searchValue}
               />
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 Search
@@ -53,7 +89,7 @@ const Inventory = () => {
             </div>
           </div>
           <p className="block mt-4 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-            You have {data?.length} lenses in your inventory
+            You have {lensesData?.length} lenses in your inventory
           </p>
         </div>
         <div className="p-6 px-0 overflow-scroll">
@@ -102,7 +138,7 @@ const Inventory = () => {
                 </th>
               </tr>
             </thead>
-            {data?.map((lens: ILens) => (
+            {lensesData?.map((lens: ILens) => (
               <Table key={lens._id} lens={lens} />
             ))}
           </table>

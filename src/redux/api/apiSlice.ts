@@ -62,10 +62,10 @@ export const api = createApi({
 
     // update lens
     updateLens: builder.mutation({
-      query: ({ data, id }) => ({
+      query: ({ lens, id }) => ({
         url: `/update-lens/${id}`,
         method: "PUT",
-        body: data,
+        body: lens,
       }),
       invalidatesTags: ["Lenses"],
     }),

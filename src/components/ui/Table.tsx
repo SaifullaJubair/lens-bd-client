@@ -4,11 +4,13 @@ import {
   MenuItem,
   MenuList,
 } from "@material-tailwind/react";
-import { FaLink, FaPencilAlt, FaTrash } from "react-icons/fa";
+import { FaDumbbell, FaLink, FaPencilAlt, FaTrash } from "react-icons/fa";
 import { ILens } from "../../interface/ILens";
 import { useDeleteLensMutation } from "../../redux/api/apiSlice";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { BiDuplicate } from "react-icons/bi";
 
 const Table = ({ lens }: { lens: ILens }) => {
   const {
@@ -142,18 +144,31 @@ const Table = ({ lens }: { lens: ILens }) => {
               </button>
             </MenuHandler>
             <MenuList className="m-0 " placeholder={""}>
-              <MenuItem className=" flex items-center gap-2" placeholder={""}>
-                <FaLink /> Visit
-              </MenuItem>
-              <MenuItem
-                className="flex items-center gap-2 hover:text-white  
+              <Link to={`/lens/details/${_id}`}>
+                <MenuItem className=" flex items-center gap-2" placeholder={""}>
+                  <FaLink /> Visit
+                </MenuItem>
+              </Link>
+              <Link to={`/lens/update/${_id}`}>
+                <MenuItem
+                  className="flex items-center gap-2 hover:text-white  
                   hover:bg-light-green-600"
-                placeholder={""}
-              >
-                <FaPencilAlt /> Edit
-              </MenuItem>
+                  placeholder={""}
+                >
+                  <FaPencilAlt /> Edit
+                </MenuItem>
+              </Link>
+              <Link to={`/lens/duplicate/${_id}`}>
+                <MenuItem
+                  className="flex items-center gap-2 hover:text-white  
+                  hover:bg-light-green-600"
+                  placeholder={""}
+                >
+                  <BiDuplicate /> Duplicate
+                </MenuItem>
+              </Link>
               <MenuItem
-                className="flex items-center text-red-600   gap-2"
+                className="flex items-center hover:bg-red-600 gap-2"
                 placeholder={""}
                 onClick={() => {
                   handleDelete();
