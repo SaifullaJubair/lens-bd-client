@@ -35,7 +35,7 @@ const LensDetails = () => {
             {" "}
             Price: {lens.price} taka
           </p>
-          <p className="my-2">Description: {lens.description}</p>
+          <p className="my-2"> {lens.description}</p>
         </div>
       </div>
       <hr />

@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 
 export function SellsModal({ handleOpen, id }: any) {
   const { data: lens } = useGetSingleLensQuery(id);
-  const [addSell, { isLoading, isSuccess }] = useAddSellMutation();
+  const [addSell, { isLoading }] = useAddSellMutation();
   const currentDate = new Date();
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     day: "numeric",
@@ -35,10 +35,9 @@ export function SellsModal({ handleOpen, id }: any) {
       sellDate: formattedDate,
     };
     addSell(sellLensInfo);
-    if (isSuccess) {
-      handleOpen();
-      toast.success("Lens sold successfully");
-    }
+
+    handleOpen();
+    toast.success("Lens sold successfully");
   };
   return (
     <>

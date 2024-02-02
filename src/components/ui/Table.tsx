@@ -66,9 +66,11 @@ const Table = ({
               className="relative inline-block h-12 w-12 overflow-hidden"
             />
             <div className="flex flex-col">
-              <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                {name}
-              </p>
+              <Link to={`/lens/details/${_id}`}>
+                <p className="block font-sans text-sm antialiased font-semibold hover:text-blue-600 leading-normal text-blue-gray-900">
+                  {name.length > 16 ? `${name.slice(0, 16)}...` : name}
+                </p>
+              </Link>
               <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                 Color: {color}
               </p>
