@@ -48,7 +48,7 @@ const SellsHistory = () => {
           Sell History {filteredData.length}
         </h1>
         <p>Filter by: Day / Week / Month</p>
-        <div>
+        <div className="my-6">
           <ButtonGroup placeholder={""} variant="outlined">
             <Button placeholder={""} onClick={() => setFilter("")}>
               All
@@ -74,15 +74,31 @@ const SellsHistory = () => {
                   className="w-full"
                 />
               </div>
-              <div>
+              <p className="text-xl mb-1  text-gray-700 font-semibold">
+                Lens Details
+              </p>
+              <hr />
+              <div className="my-1 text-gray-700">
                 <p>Name: {lens.lensInfo.name}</p>
                 <p>Category: {lens.lensInfo.category}</p>
                 <p>Brand: {lens.lensInfo.brand}</p>
                 <p>Color: {lens.lensInfo.color}</p>
                 <p>Gender: {lens.lensInfo.gender}</p>
-                <p>Quantity: {lens.quantity}</p>
                 <p>Price: {lens.lensInfo.price}</p>
-                <p>Total Price: {lens.lensInfo.price * lens.quantity}</p>
+              </div>
+              <hr />
+              <div className="my-1 ">
+                <p className="text-lg text-gray-700 font-semibold">
+                  Selling info:{" "}
+                </p>
+                <p>Buyer Name: {lens.name}</p>
+                <p>Quantity: {lens.quantity}</p>
+                <p>
+                  Total Price:{" "}
+                  <span className="text-bold text-lg">
+                    {lens.lensInfo.price * lens.quantity} /৳
+                  </span>{" "}
+                </p>
                 <p>Sell Date: {lens.sellDate}</p>
               </div>
             </div>
