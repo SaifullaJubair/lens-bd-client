@@ -8,6 +8,7 @@ import {
   useGetLensesQuery,
   useSelectDeleteLensMutation,
 } from "../redux/api/apiSlice";
+import { Button } from "@material-tailwind/react";
 
 const Inventory = () => {
   const { isLoading, data } = useGetLensesQuery(undefined, {
@@ -167,14 +168,17 @@ const Inventory = () => {
                   </td>
                 </th>
                 <th className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
-                  <td className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  <td className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 ">
                     {ids.length > 0 ? (
-                      <p
-                        className="text-xs bg-red-600 text-white px-2 py-1 "
+                      <Button
+                        placeholder={""}
+                        size="sm"
                         onClick={handleSelectDelete}
+                        color="red"
+                        variant="gradient"
                       >
-                        Delete All
-                      </p>
+                        Delete
+                      </Button>
                     ) : (
                       <>Select</>
                     )}
